@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <audio src="sounds/boom.wav" controls></audio>
+    <audio src="sounds/clap.wav" controls id="clap"></audio>
+    <button id="play">PLAY!</button>
+
+    <script type="text/javascript">
+        const clapSound = document.querySelector("#clap");
+        const channel1 = [];
+        document.body.addEventListener("keypress", playAudio);
+
+    function playAudio(e) {
+        switch (e) {
+            case "KeyA":
+                clapSound.currentTime = 0;
+                clapSound.play();
+                const time = Date.now();
+                channel1.push({
+                    code: e.code,
+                    time: time
+                });
+                break;
+        }
+        console.log(channel1);
+    }
+
+    document.querySelector("#play").addEventListener("click", playMusic);
+
+    function playMusic()
+    {
+        for (let row in channel1) 
+        {
+        for (let name in channel1[row]) 
+            {
+            setTimeout(playAudio, channel1[row][name][time], "KeyA");
+            }
+        }
+    }
+
+    
+    </script>
+</body>
+</html>
