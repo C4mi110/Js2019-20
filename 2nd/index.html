@@ -5,14 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="script.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Musicker!</title>
 </head>
 <body>
-    <audio src="sounds/boom.wav" controls></audio>
-    <audio src="sounds/clap.wav" controls id="clap"></audio>
-    <button id="play">PLAY!</button>
+    <audio src="sounds/boom.wav" id="boom"></audio>
+    <audio src="sounds/clap.wav" id="clap"></audio>
+    <audio src="sounds/snare.wav" id="snare"></audio>
+    <audio src="sounds/kick.wav" id="kick"></audio>
+    <audio src="sounds/openhat.wav" id="openhat"></audio>
+    <audio src="sounds/ride.wav" id="ride"></audio>
 
-    <script type="text/javascript">
+    <div class="app">
+        <header>
+            <h1>Choose channel</h1>
+        </header>
+
+        <div class="channels">
+            <form>
+                <br>
+                <input type="radio" name="channels" id="channel1" checked>
+                    <span>Channel #1</span>
+                <input type="radio" name="channels" id="channel2">
+                    <span>Channel #2</span>
+                <input type="radio" name="channels" id="channel3">
+                    <span>Channel #3</span>
+                <input type="radio" name="channels" id="channel4">
+                    <span>Channel #4</span>
+            </form>
+        </div>
+    
+        <div class="controls">
+            <div id="channel1div" >
+                    <button id="channel1Play" class="button">PLAY!</button>
+                    <button id="channel1Rec" class="button">Rec!</button>
+            </div>
+            <div id="channel2div" class="hidden">
+                    <button id="channel2Play" class="button">PLAY!</button>
+                    <button id="channel2Rec" class="button">Rec!</button>
+            </div>
+            <div id="channel3div" class="hidden">
+                    <button id="channel3Play" class="button">PLAY!</button>
+                    <button id="channel3Rec" class="button">Rec!</button>
+            </div>
+            <div id="channel4div" class="hidden">
+                    <button id="channel4Play" class="button">PLAY!</button>
+                    <button id="channel4Rec" class="button">Rec!</button>
+            </div>
+                <button id="playAll" class="button blue">Play all song</button>
+        </div>
+    
+        <div class="visual"></div>
+        <div class="pads">
+            <div class="AKey">
+                <p>A: Boom</p>
+            </div>
+            <div class="SKey">
+                <p>S: Clap</p>
+            </div>
+            <div class="DKey">
+                <p>D: Snare</p>
+            </div>
+            <div class="FKey">
+                <p>F: Kick</p>
+            </div>
+            <div class="GKey">
+                <p>G: Openhat</p>
+            </div>
+            <div class="HKey">
+                <p>H: Ride</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">/*
         const clapSound = document.querySelector("#clap");
         const channel1 = [];
         document.body.addEventListener("keypress", playAudio);
@@ -45,7 +112,7 @@
         }
     }
 
-    
+    */
     </script>
 </body>
 </html>
