@@ -10,13 +10,43 @@
         }
         #canvas {
             background-color: #fff;
+            padding: 0;
+            margin: auto;
+            display: block;
+        }
+        .features {
+            width: 20vh;
+            float: right;
+        }
+        .tools {
+            width: 20vh;
+            float: left;
         }
     </style>
     <script src="canvas.js"></script>
 </head>
 <body>
+    <div class="tools">
+        <p>Brushes: </p>
+        <button id="brushSquare">Square</button>
+        <button id="brushCircle">Circle</button>
+        <button id="brushTriangle">Triangle</button><br>
+        <input type="color" id="brushColor" value="#000000">
+        <input type="range" id="brushSize" step="1" min="1" max="100" value="10">
+    </div>
+
+    <div class="features">
+        <button id="darken">Przyciemnij</button>
+        <button id="lighten">Rozjaśnij</button>
+        <button id="saturationPlus">Saturation+</button>
+        <button id="saturationMinus">Saturation-</button>
+        <button id="greenScreen">remove green screen</button>
+        <button id="invert">Negative</button>
+        <button id="blackNwhite">Black and white</button>
+    </div>
+
     <canvas id="canvas" width="800" height="600"></canvas>
-    <button id="darken">Przyciemnij</button>
-    <button id="lighten">Rozjaśnij</button>
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    
 </body>
 </html>
