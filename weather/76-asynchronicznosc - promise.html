@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM, zdarzenia w JS</title>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script type="text/javascript">
+        // 1. obiekt Promise()
+        // ale zanim - ajax na sterydach - fetch()
+        // no <=IE11 support!
+        // za pomocą callbackow odpowiedz: czy callback już nastąpił? jaki był wynik? a gdybym chciał poczekać na dwa callbacki?
+        const opwApiKey = '50d53005c0fd5f556bb4ef15224c4209'
+        const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=Cracow&APPID=${opwApiKey}`
+        // let koniecPracy = new Promise()
+
+        // koniecPracy
+        //     .then(wykapSie)
+        //     .then(znajdzRower)
+        //     .then(znajdzKnajpe)
+        //     .then(bawSieDobrze)
+        //     .then(wrocBezpiecznie)
+        //     .catch(upsPolicja)
+
+        const weather = fetch(openWeatherUrl)
+        console.log(weather) // PROMISE!
+        
+        
+        weather
+            .then((respObject)=>{console.log('First .then',respObject); return respObject.json()})
+            .then(pogoda=>{console.log('Second .then',pogoda)})
+            .catch((e)=>{console.error('Catched exception: ', e)})
+
+        // 2. Budowanie własnych Promise()
+        const p = new Promise(
+            (resolve,reject) => {
+                // Promise może zostać rozwiązana lub odrzucona - nigdy obydwa przypadki
+                // rozwiązanie Promise: resolve(retVal)
+                // odrzucenie Promise: reject(retVal)
+                setTimeout(
+                    ()=> {
+                        console.log('Promise resolved, but .then not fired..:(')
+                        resolve('Promises are cool!')
+                    }
+                ,2000)
+                setTimeout(
+                    ()=> {
+                        console.log('Promise rejected')
+                        // we reject and return Error object - exception
+                        reject(Error('Promises can be rejected'))
+                    }
+                ,1000)
+                
+            }
+        )
+        // check
+        p
+        .then(data=>console.log(data))
+        .catch(e=>console.log(e))
+
+        // // 3. Chaining - łączenie kolejnych Promise
+        // // przykład - dekorowanie elementu
+        // function addBold(enl) {return new Promise()}
+        // function addItalic(el) {return new Promise()}
+        // function addUnderline(el) {return new Promise()}
+        // function addBackgroud(el,color) {return new Promise()}
+
+
+        // // inny przykład - działanie na dużych tablicach (Array.map, .find, .sort, filter) bez czekania na wynik
+
+        // 4. Wiele Promises(). Promise umożliwia czekanie na wiele innych Promise!
+        // przykład - jak dostaniesz info pogodowe, wypluj posta na fejsa
+        const fakeWeather = new Promise( 
+            (resolve, reject) => {
+                setTimeout(
+                    ()=>{resolve('Sun is shiniiing')}
+                    ,3000)
+            }
+        )
+
+        const fakeFB= new Promise( 
+            (resolve, reject) => {
+                let fb = {sendPost(p) {console.log(`Tom on fejsik says: ${p}`)}}
+                setTimeout(
+                    ()=>{resolve(fb)}
+                    ,1000)
+            }
+        )
+
+        // używamy metody statycznej .all obiektu Promise. 
+        // .all zwraca... Promise;)
+        Promise
+            .all([fakeWeather,fakeFB])
+            .then( 
+                responses=> {
+                    // kolejność w tablicy jest taka sama, jak kolejność Promise w .all([])
+                    console.log('Multpile Promises resolved', responses)
+                    const [weather, fb] = responses
+                    fb.sendPost(weather)
+                }
+            )
+
+        // // 5. Czekamy na pierwszą z zakończonych Promise
+        // // Promise.race([]).then(data=>console.log(data))
+
+        // // 6. Tworzenie defaultowo rozwiązanych lub odrzuconych Promises
+        // const resolved = Promise.resolve('I\'m optimist!')
+        // const rejected = Promise.reject('I\'m pesimist')
+
+        // 7. Brak w Promise: obietnica może być rozwiązana jedynie raz - więc nie sprawdza się w ciągłych procesach (TIP: Observables). 
+        
+    </script>
+</body>
+</html>
