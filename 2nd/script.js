@@ -1,32 +1,3 @@
-window.onload= function (){
-
-document.body.addEventListener('keypress', onKeyPress);
-
-document.querySelector('#channel1Rec').addEventListener('click', btnChannel1Click);
-document.querySelector("#channel1Play").addEventListener("click",playChannel1);
-document.querySelector('#channel2Rec').addEventListener('click', btnChannel2Click);
-document.querySelector("#channel2Play").addEventListener("click",playChannel2);
-document.querySelector('#channel3Rec').addEventListener('click', btnChannel3Click);
-document.querySelector("#channel3Play").addEventListener("click",playChannel3);
-document.querySelector('#channel4Rec').addEventListener('click', btnChannel4Click);
-document.querySelector("#channel4Play").addEventListener("click",playChannel4);
-document.querySelector("#playAll").addEventListener("click",playAll);
-
-let channel1radio = document.querySelector("#channel1");
-let channel2radio = document.querySelector("#channel2");
-let channel3radio = document.querySelector("#channel3");
-let channel4radio = document.querySelector("#channel4");
-
-const divs = ["channel1div", "channel2div", "channel3div", "channel4div"]
-const channels = document.querySelectorAll(".channels input");
-channels.forEach((input, index) => {
-    input.addEventListener("click", function() {
-        document.querySelector("#"+divs[index]).classList.remove("hidden");
-        for(var i=0; i<channels.length; i++)
-            if (i!=index) document.querySelector("#"+divs[i]).classList.add("hidden");
-    });
-});
-
 let channel1Start;
 let channel2Start;
 let channel3Start;
@@ -46,29 +17,40 @@ const sounds = {
     KeyH: '#ride',
 };
 
-function playChannel1(){
-    channel1.forEach((el) => {
-        setTimeout(() => {
-            playSound(sounds[el.sound]);
-        }, el.time);
+window.onload= function (){
+
+document.body.addEventListener('keypress', onKeyPress);
+
+document.querySelector('#channel1Rec').addEventListener('click', btnChannel1Click);
+document.querySelector("#channel1Play").addEventListener("click",playChannel(channel1));
+document.querySelector('#channel2Rec').addEventListener('click', btnChannel2Click);
+document.querySelector("#channel2Play").addEventListener("click",playChannel(channel2));
+document.querySelector('#channel3Rec').addEventListener('click', btnChannel3Click);
+document.querySelector("#channel3Play").addEventListener("click",playChannel(channel3));
+document.querySelector('#channel4Rec').addEventListener('click', btnChannel4Click);
+document.querySelector("#channel4Play").addEventListener("click",playChannel(channel4));
+document.querySelector("#playAll").addEventListener("click",playAll);
+
+let channel1radio = document.querySelector("#channel1");
+let channel2radio = document.querySelector("#channel2");
+let channel3radio = document.querySelector("#channel3");
+let channel4radio = document.querySelector("#channel4");
+
+const divs = ["channel1div", "channel2div", "channel3div", "channel4div"]
+const channels = document.querySelectorAll(".channels input");
+channels.forEach((input, index) => {
+    input.addEventListener("click", function() {
+        document.querySelector("#"+divs[index]).classList.remove("hidden");
+        for(var i=0; i<channels.length; i++)
+            if (i!=index) document.querySelector("#"+divs[i]).classList.add("hidden");
     });
-};
-function playChannel2(){
-    channel2.forEach((el) => {
-        setTimeout(() => {
-            playSound(sounds[el.sound]);
-        }, el.time);
-    });
-};
-function playChannel3(){
-    channel3.forEach((el) => {
-        setTimeout(() => {
-            playSound(sounds[el.sound]);
-        }, el.time);
-    });
-};
-function playChannel4(){
-    channel4.forEach((el) => {
+});
+
+
+
+
+function playChannel(channel){
+    channel.forEach((el) => {
         setTimeout(() => {
             playSound(sounds[el.sound]);
         }, el.time);

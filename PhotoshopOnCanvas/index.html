@@ -15,38 +15,99 @@
             display: block;
         }
         .features {
-            width: 20vh;
+            width: 26vh;
             float: right;
+            background-color: lightblue;
+            text-align: center;
+            vertical-align: middle;
         }
         .tools {
-            width: 20vh;
+            width: 24vh;
             float: left;
+            background-color: lightcoral;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .options {
+            width: 100%;
+            background-color: lightgreen;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .rangeLabelLeft, .rangeLabelRight {
+            width: 50px;
+            padding: 2px;
+            text-align: center;
+        }
+        .leftlabel {
+            background-color: red;
+            color: white;
+        }
+        .rightlabel {
+            background-color: purple;
+            color: white;
+        }
+        .outputRange
+        {
+            width: 100%;
+            margin-left: 1%;
         }
     </style>
-    <script src="canvas.js"></script>
+    <script src="brush.js" type="text/javascript"></script>
+    <script src="filter.js" type="text/javascript"></script>
+    <script src="canvasEdit.js" type="text/javascript"></script>
+    <script src="canvas.js" type="text/javascript"></script>
 </head>
 <body>
+
     <div class="tools">
-        <p>Brushes: </p>
+        <p>Brush: </p>
         <button id="brushSquare">Square</button>
         <button id="brushCircle">Circle</button>
         <button id="brushTriangle">Triangle</button><br>
+        <p>Color:</p>
         <input type="color" id="brushColor" value="#000000">
-        <input type="range" id="brushSize" step="1" min="1" max="100" value="10">
+        <p>Size:</p>
+        <div class="rangeBar">
+                <span class="rangeLabelLeft">1</span> 
+                <input type="range" id="brushSize" step="1" min="1" max="100" value="10" >
+                <span class="rangeLabelRight">100</span>
+                <span id="rangeTextBrush" class="outputRange"></span> 
+        </div>
     </div>
 
     <div class="features">
-        <button id="darken">Przyciemnij</button>
-        <button id="lighten">Rozjaśnij</button>
-        <button id="saturationPlus">Saturation+</button>
-        <button id="saturationMinus">Saturation-</button>
-        <button id="greenScreen">remove green screen</button>
-        <button id="invert">Negative</button>
-        <button id="blackNwhite">Black and white</button>
+        <p>Change:</p>
+        <button id="brightnessBtn">Brightness</button>
+        <button id="contrastBtn">Contrast</button>
+        <div class="rangeBar">
+            <span class="rangeLabelLeft">-100</span> 
+            <input type="range" id="sliderRange" step="1" min="-100" max="100" value="0" >
+            <span class="rangeLabelRight">100</span>
+            <span id="rangeText" class="outputRange"></span> 
+        </div>
+        
+        <p>Style:</p>
+        <button id="negativeBtn">Negative</button>
+        <button id="blackNwhiteBtn">Black and white</button>
+        <button id="sepiaBtn">Sepia</button>
+        <button id="thresholdBtn">Threshold</button> 
+        <button id="sharpenBtn">Sharpen</button> 
+        <button id="blurBtn">Blur</button> 
     </div>
 
     <canvas id="canvas" width="800" height="600"></canvas>
-    <input type="file" name="fileToUpload" id="fileToUpload">
+
+    <div class="options">
+        <input type="file" id="imageLoader" accept="image/png, image/jpeg">
+        <button id="resetStyleBtn">Reset</button> 
+        <a href="#" class="button" id="downloadBtn" download="my-edited-photo.png">Download</a>
+    </div>
+
+    <div style="display:none;">
+        <img id="source" src="">
+      </div>
     
 </body>
 </html>
