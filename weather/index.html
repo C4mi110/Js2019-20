@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Miejscowość:</p>
+    <input type="text" id="place">
+    <button id="zobaczPogode">Zobacz pogodę</button>
+    <div id="container"></div>
+    
+    <script type="text/javascript">
+    const opwApiKey = '50d53005c0fd5f556bb4ef15224c4209'
+    let container = document.querySelector("#container");
+    
+    document.querySelector("#zobaczPogode").addEventListener("click", FindWeather);
+
+    function FindWeather()
+    {
+        let place = document.querySelector("#place").value;
+        const openWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=${opwApiKey}`
+        const weather = fetch(openWeatherUrl)
+
+        weather
+            .then((respObject)=>{console.log('First .then',respObject); return respObject.json()})
+            .then(pogoda=>
+            {
+                container.innerHTML += parseInt(pogoda.main.temp-273.15) + "°С temp od "+ parseInt(pogoda.main.temp_min-273.15) + " do " + parseInt(pogoda.main.temp_max-273.15) + ", wind " + pogoda.wind.speed + ", chmury " + pogoda.clouds.all + "%, " + pogoda.main.pressure + "hPa";
+                var myImage = new Image(255, 255);
+                myImage.src = 'icons.jpg';
+                myImage.style["background"] = "url('icons.jpg') 0 0";
+                container.appendChild(myImage);
+                
+                console.log('Second .then',pogoda)
+            })
+            .catch((e)=>{console.error('Catched exception: ', e)})
+    }
+
+    </script>
+
+</body>
+</html>
