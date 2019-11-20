@@ -1,0 +1,177 @@
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+body {
+    background-color: #696969;
+}
+.app
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 80px;
+    grid-auto-rows: minmax(10px, auto);
+}
+#canvas {
+    background-color: #fff;
+    padding: 0;
+    margin: auto;
+    display: block;
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    grid-row: 1;
+    grid-column: 2;
+}
+.features {
+    background-color: #868686;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 25px;
+    grid-row: 1;
+    grid-column: 3;
+}
+.tools {
+    background-color: #868686;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 25px;
+    grid-row: 1;
+    grid-column: 1;
+}
+.options {
+    background-color: #969696;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 25px;
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.rangeLabelLeft, .rangeLabelRight {
+    width: 50px;
+    padding: 2px;
+    text-align: center;
+}
+.leftlabel {
+    background-color: red;
+    color: white;
+}
+.rightlabel {
+    background-color: purple;
+    color: white;
+}
+.outputRange
+{
+    width: 100%;
+    margin-left: 1%;
+}
+.button 
+{
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    background: #fff;
+    border-radius: 100px;
+    border: 0px solid #444;
+    border-width: 0px 0px 0px 0px;
+    padding: 0px 13px 0px 13px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+    color: #000;
+    margin: 3px;
+}
+.button:hover {
+    border: 1px solid #000;
+}
+.button p
+{
+    margin: 3px;
+}
+.circleShape
+{
+    display:inline-block!important;
+    width:16px;
+    height:16px;
+    background-color:#000;
+    border-radius:100%;
+    margin: 3px 0 0 0;
+}
+.squareShape
+{
+    display:inline-block!important;
+    width:16px;
+    height:16px;
+    background-color:#000;
+    margin: 3px 0 0 0;
+}
+.triangleShape
+{
+    display:inline-block!important;
+    width:0;
+    height:0;
+    border-left:16px solid transparent;
+    border-right:16px solid transparent;
+    border-bottom:16px solid #000;
+    margin: 3px 0 0 0;
+}
+input[type="color"] 
+{
+    border: none;
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+}
+input[type="color"]:hover
+{
+    border: 1px solid #000;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+input[type=range]:hover{
+    border: 1px solid #000;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #fff;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #000;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #fff;
+}
+
+.fileInput::-webkit-file-upload-button 
+{
+    visibility: hidden;
+}
+.fileInput {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    background: #fff;
+    border-radius: 100px;
+    border: 0px solid #444;
+    border-width: 0px 0px 0px 0px;
+    padding: 0px 13px 0px 13px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+    color: #000;
+    margin: 3px;
+}
+.fileInput:hover {
+    border: 1px solid #000;
+}

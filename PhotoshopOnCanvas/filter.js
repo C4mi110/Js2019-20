@@ -70,56 +70,62 @@ class Filter {
                 }
             break
             case "sharpen":
-                let tmpCanvas = document.createElement('canvas');
-                let tmpCtx = tmpCanvas.getContext('2d');
-
-                let weights = 
-                [  0, -1,  0,
-                  -1,  5, -1,
-                   0, -1,  0 ];
-                let opaque = 0.5;   
-                var side = Math.round(Math.sqrt(weights.length));
-                var halfSide = Math.floor(side/2);
-                var src = this.imgData.data
-                var sw = this.imgData.width;
-                var sh = this.imgData.height;
-                // pad output by the convolution matrix
-                var w = sw;
-                var h = sh;
-                var output = tmpCtx.createImageData(w,h);
-                var dst = output.data;
-                // go through the destination image pixels
-                var alphaFac = opaque ? 1 : 0;
-                for (var y=0; y<h; y++) {
-                  for (var x=0; x<w; x++) {
-                    var sy = y;
-                    var sx = x;
-                    var dstOff = (y*w+x)*4;
-                    // calculate the weighed sum of the source image pixels that
-                    // fall under the convolution matrix
-                    var r=0, g=0, b=0, a=0;
-                    for (var cy=0; cy<side; cy++) {
-                      for (var cx=0; cx<side; cx++) {
-                        var scy = sy + cy - halfSide;
-                        var scx = sx + cx - halfSide;
-                        if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
-                          var srcOff = (scy*sw+scx)*4;
-                          var wt = weights[cy*side+cx];
-                          r += src[srcOff] * wt;
-                          g += src[srcOff+1] * wt;
-                          b += src[srcOff+2] * wt;
-                          a += src[srcOff+3] * wt;
-                        }
-                      }
-                    }
-                    dst[dstOff] = r;
-                    dst[dstOff+1] = g;
-                    dst[dstOff+2] = b;
-                    dst[dstOff+3] = a + alphaFac*(255-a);
-                  }
-                }
-                this.imgData = output;
+            var weights = [ 0, -1,  0,
+                           -1,  5, -1,
+                            0, -1,  0 ];
+            this.convolutionFilter(weights);
+            break
+            case "blur":
+            var weights = [ 1/9, 1/9, 1/9,
+                            1/9, 1/9, 1/9,
+                            1/9, 1/9, 1/9 ];
+            this.convolutionFilter(weights);
             break
         }
+    }
+    convolutionFilter(weights)
+    {
+        let tmpCanvas = document.createElement('canvas');
+        let tmpCtx = tmpCanvas.getContext('2d');
+        
+        var side = Math.round(Math.sqrt(weights.length));
+        var halfSide = Math.floor(side/2);
+        var src = this.imgData.data;
+        var sw = this.imgData.width;
+        var sh = this.imgData.height;
+        // pad output by the convolution matrix
+        var w = sw;
+        var h = sh;
+        var output = tmpCtx.createImageData(w,h);
+        var dst = output.data;
+        for (var y=0; y<h; y++) {
+            for (var x=0; x<w; x++) {
+            var sy = y;
+            var sx = x;
+            var dstOff = (y*w+x)*4;
+            // calculate the weighed sum of the source image pixels that
+            // fall under the convolution matrix
+            var r=0, g=0, b=0, a=0;
+            for (var cy=0; cy<side; cy++) {
+                for (var cx=0; cx<side; cx++) {
+                var scy = sy + cy - halfSide;
+                var scx = sx + cx - halfSide;
+                if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
+                    var srcOff = (scy*sw+scx)*4;
+                    var wt = weights[cy*side+cx];
+                    r += src[srcOff] * wt;
+                    g += src[srcOff+1] * wt;
+                    b += src[srcOff+2] * wt;
+                    a += src[srcOff+3] * wt;
+                }
+                }
+            }
+            dst[dstOff] = r;
+            dst[dstOff+1] = g;
+            dst[dstOff+2] = b;
+            dst[dstOff+3] = a;
+            }
+        }
+        this.imgData = output;
     }
 }
