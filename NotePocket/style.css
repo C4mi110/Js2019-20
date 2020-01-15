@@ -1,0 +1,137 @@
+    body
+    {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+    .searchInput
+    {
+        width: 98%;
+        border: 0;
+        outline: none;
+        margin: 0px 15px;
+        text-align: center;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        }
+
+    .NoteBox
+    {
+        background-color: lightblue;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        width: 350px;
+        height: 350px;
+        margin: 15px;
+    }    
+    .NoteHeader
+    {
+        background-color: #FEBCC8;
+        width: 100%;
+        height: 35px;
+        padding: 3px 15px 0 15px;
+    }
+    .NoteHeader input
+    {
+        width: 88%;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+    }
+    .NoteHeader button
+    {
+        float: right;
+    }
+    .NoteBody
+    {
+        background-color: #333;
+        width: 100%;
+        height: 285px;
+    }
+    .NoteBody textarea
+    {
+        width: 100%;
+        height: 285px;
+        background-color: transparent;
+        color: #fff;
+        border: 0;
+        outline: none;
+        padding: 10px 15px 5px 15px;
+        resize: none;
+    }
+    .NoteFooter
+    {
+        background-color: #333;
+        color: #fff;
+        width: 100%;
+        height: 60px;
+        border-top: 1px solid #999;
+        padding: 5px 15px 0 15px;
+    }
+    .NoteFooter a
+    {
+        color: #000;
+        float: right;
+    }
+  .holder{
+    display: inline-block;
+  }
+  .color{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  .submitBtn {
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	display:inline-block;
+	cursor:pointer;
+	color:#000;
+	font-weight:bold;
+    padding:0px 5px;
+    margin:0px 5px;
+}
+.submitBtn:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	background-color:#e9e9e9;
+}
+.submitBtn:active {
+	position:relative;
+	top:1px;
+}
+
+
+.red
+{
+    background-color: #FEBCC8;
+}
+.yellow
+{
+    background-color: #FEFBBC;
+}
+.aqua
+{
+    background-color: #BCFEFB;
+}
+.blueviolet
+{
+    background-color: #CEBCFE;
+}
+.blue
+{
+    background-color: #BCDBFE;
+}
+.unPinned
+{
+    order: 1;   
+}
+.pinned
+{
+    order: 0;
+}

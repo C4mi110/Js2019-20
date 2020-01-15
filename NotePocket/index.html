@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-    .wrapper {
-        width: 225px; 
-        height: 225px; 
-        background-color: lightblue;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-    }
-    </style>
-    <script src="note.js"></script>
-    <script src="app.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <div class="wrapper">
-        <p>Tytuł</p>
-        <p>data</p>
-        <input type="checkbox" name="" id="">
-        <p>treść</p>
+    <input type="text" class="searchInput" id="searchInput" placeholder="Wyszukiwarka">
+    <div class="grid-container">
+    <div class="NoteBox">
+        <div class="NoteHeader red">
+            <input type="text" id="noteTitle" placeholder="Podaj tytuł notatki">
+        </div>
+        <div class="NoteBody">
+            <textarea name="noteBody" id="noteBody" cols="40" rows="5" placeholder="Podaj treść notatki"></textarea>
+        </div>
+        <div class="NoteFooter">
+            <div class="holder">
+                <span>Color:</span>
+                    <div class="color red" onclick="changeColor(this)"></div>
+                    <div class="color yellow"onclick="changeColor(this)"></div>
+                    <div class="color blueviolet"onclick="changeColor(this)"></div>
+                    <div class="color blue"onclick="changeColor(this)"></div>
+                    <div class="color aqua"onclick="changeColor(this)"></div>
+            </div>
+                <span>Priority:</span>
+                <input type="checkbox" name="priority" id="priority" value="1">
+                <a href="#" class="submitBtn" id="submitBtn" onclick="addNote()">Add Note</a>
+        </div>
     </div>
-    <div>
-        <p>Title</p>
-        <input type="text" id="titleBox">
-        <p>Description</p>
-        <input type="text" id="descBox">
-        <p>Color</p>
-        <input type="color" id="colorBox"><br>
-        <button id="addNoteBtn">add</button>
-    </div>
-    <div id="noteContentBox"></div>
+</div>
+
+    <script src="notes.js"></script>
+    <script src="engine.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
