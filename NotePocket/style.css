@@ -106,6 +106,15 @@
 	top:1px;
 }
 
+.optionBtn {
+	background: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#000;
+	font-weight:bold;
+    padding:0px 5px;
+    margin:0px 5px;
+}
 
 .red
 {

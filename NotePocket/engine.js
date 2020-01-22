@@ -27,10 +27,25 @@ class Engine {
     }
 
     deleteNote(id) {
-        alert('Czy napewno chcesz usunąć notatkę?');
+        if(confirm('Czy napewno chcesz usunąć notatkę?'))
+        {
         this.notesArr.forEach((note, i) => {
             if (note.id === id) {
                 this.notesArr.splice(i, 1);
+            }
+        });
+        this.saveNotes();
+        this.show();
+        }
+    }
+
+    updateNote(id, title, text) {
+        this.notesArr.forEach((note, i) => {
+            if (note.id === id) {
+                if (title != null)
+                    this.notesArr[id].title = title;
+                if (text != null)
+                    this.notesArr[id].text = text;
             }
         });
         this.saveNotes();
@@ -101,6 +116,7 @@ class Engine {
             var NoteTitleInput = document.createElement("input");
             NoteTitleInput.type = "text";
             NoteTitleInput.value = note.title
+            NoteTitleInput.addEventListener ("change", function(){engine.updateNote(note.id, NoteTitleInput.value);});
             NoteHeaderDiv.appendChild(NoteTitleInput);
             NoteBoxDiv.appendChild(NoteHeaderDiv);
 
@@ -108,6 +124,7 @@ class Engine {
             noteBodyDiv.className = 'NoteBody';
             var NoteBodyInput = document.createElement("textarea");  
             NoteBodyInput.value = note.text;
+            NoteBodyInput.addEventListener ("change", function(){engine.updateNote(note.id, null, NoteBodyInput.value);});
             noteBodyDiv.appendChild(NoteBodyInput);
             NoteBoxDiv.appendChild(noteBodyDiv);
 
@@ -117,7 +134,7 @@ class Engine {
             var NoteDateNode = document.createTextNode(note.createDate);
             var APinButton = document.createElement("a");
             APinButton.innerHTML = "Pin";
-            APinButton.className = "submitBtn";
+            APinButton.className = "optionBtn";
             if (note.isPickedUp === false) {
                 APinButton.innerHTML = "Pin";
                 APinButton.addEventListener ("click", function(){engine.pickUpNote(note.id);});
@@ -129,7 +146,7 @@ class Engine {
             }
             var ADeleteButton = document.createElement("a");
             ADeleteButton.innerHTML = "X";
-            ADeleteButton.className = "submitBtn";
+            ADeleteButton.className = "optionBtn";
             ADeleteButton.addEventListener ("click", function(){engine.deleteNote(note.id);});
             NoteDateSpan.appendChild(NoteDateNode);
             NoteFooterDiv.appendChild(NoteDateSpan);
