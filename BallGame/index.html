@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ball in a hole</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <div id="ball"></div>
-        <button onclick="start()" id="start">Start Game!</button>
-        <button onclick="reset()" id = "reset" hidden>Try again!!</button>
+    <div class="area">
+        <div class="laser" id="laser"></div>
+        <div class="tp blue" id="tpIn"></div>
+        <div id="tpInTrigger"></div>
+        <div class="cube" id="ba">
+            <img src="cube.jpg">
+        </div>
+
+        <div class="tp red" id="tpOut"></div>
+
+        <div id="finish"></div>
+        <div id="finishTrigger"></div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <button id="restart" onclick="restart()">Restart</button>
+    <pre id="timer">Timer: 0.00 sec <br>Best time: </pre>
+    <pre class="output"></pre>
+
+    <script src="ball.js"></script>
 </body>
 </html>
